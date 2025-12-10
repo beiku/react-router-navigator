@@ -1,0 +1,93 @@
+{
+  "name": "react-router-navigator",
+  "displayName": "React Router Navigator",
+  "description": "Navigate to files from React Router routes.ts with Cmd+Click (Ctrl+Click on Windows/Linux)",
+  "version": "0.0.1",
+  "publisher": "beiku",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beiku/react-router-navigator"
+  },
+  "keywords": [
+    "react-router",
+    "routes",
+    "navigation",
+    "go to definition",
+    "codelens"
+  ],
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "React Router Navigator",
+      "properties": {
+        "reactRouterNavigator.fileExtensions": {
+          "type": "array",
+          "default": [
+            ".tsx",
+            ".ts",
+            ".jsx",
+            ".js"
+          ],
+          "description": "File extensions to search for when the path has no extension"
+        },
+        "reactRouterNavigator.excludeFolders": {
+          "type": "array",
+          "default": [
+            "node_modules",
+            "dist",
+            "build",
+            ".git",
+            ".react-router"
+          ],
+          "description": "Folders to exclude from file search"
+        },
+        "reactRouterNavigator.triggerFilePatterns": {
+          "type": "array",
+          "default": [
+            "routes"
+          ],
+          "description": "File name patterns that trigger navigation for all strings (case-insensitive)"
+        },
+        "reactRouterNavigator.maxSearchResults": {
+          "type": "number",
+          "default": 3,
+          "description": "Maximum number of files to search"
+        },
+        "reactRouterNavigator.enableCodeLens": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show full URL path as CodeLens above route definitions"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.106.1",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.48.1",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3",
+    "@vscode/vsce": "^3.2.2"
+  }
+}
