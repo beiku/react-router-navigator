@@ -79,8 +79,9 @@ function isTriggerFile(fileName: string, patterns: string[]): boolean {
 }
 
 // Check if path looks like a file path
+// Must end with a file extension (.tsx, .ts, .jsx, .js)
 function looksLikePath(rawPath: string, extensions: string[]): boolean {
-  return rawPath.includes('/') || rawPath.startsWith('.') || extensions.some((ext) => rawPath.endsWith(ext));
+  return extensions.some((ext) => rawPath.endsWith(ext));
 }
 
 // Search for files matching the pattern within the same project root
@@ -515,8 +516,9 @@ export function activate(context: vscode.ExtensionContext) {
           const { range, rawPath } = extracted;
           const isTrigger = isTriggerFile(document.fileName, config.triggerFilePatterns);
 
-          // Skip if not a trigger file and doesn't look like a path
-          if (!isTrigger && !looksLikePath(rawPath, config.fileExtensions)) {
+          // Always check if it looks like a file path (even in routes.ts files)
+          // Only process actual file paths, not route path strings like 'dashboard'
+          if (!looksLikePath(rawPath, config.fileExtensions)) {
             return null;
           }
 

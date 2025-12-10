@@ -3,7 +3,7 @@
   "displayName": "React Router Navigator",
   "icon": "images/icon.png",
   "description": "Navigate to files from React Router routes.ts with Cmd+Click (Ctrl+Click on Windows/Linux)",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "beiku",
   "license": "MIT",
   "repository": {
